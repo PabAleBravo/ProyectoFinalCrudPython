@@ -1,0 +1,25 @@
+{% extends "AppCoder/base.html" %}
+{% load static %}
+
+{% block contenido2 %}
+<div class="masthead-heading text-uppercase">Nuestros <br> Clientes</div>
+{% endblock %}
+
+{% block contenido %}
+
+    {% if formularioClientes.errors %}
+    <h2 style="color: red;">Error en el formulario</h2>
+    {% endif %}
+
+    <form action="/AppCoder/clientes" method="POST"> {% csrf_token %}
+        <h1>Formulario de registro de clientes</h1>
+
+        <table>
+            {{ formularioClientes.as_table }}
+
+        </table>
+
+        <input type="submit", value="Enviar">
+
+    </form>
+{% endblock %}
