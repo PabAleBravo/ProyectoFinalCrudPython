@@ -12,14 +12,14 @@
     {% endif %}
 
     <form action="/AppCoder/clientes" method="POST"> {% csrf_token %}
-        <h1>Formulario de registro de clientes</h1>
+        <h1 style="text-align:center">Formulario de registro de clientes</h1>
 
-        <table>
+        <table style="margin-left: 500px;">
             {{ formularioClientes.as_table }}
 
         </table>
 
-        <input type="submit", value="Enviar">
+        <input style="margin-left: 580px;" type="submit", value="Enviar">
 
     </form>
 {% endblock %}

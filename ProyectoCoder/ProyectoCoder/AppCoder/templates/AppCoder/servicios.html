@@ -5,7 +5,25 @@
 <div class="masthead-heading text-uppercase">Nuestros <br> Servicios</div>
 {% endblock %}
 
-{% block contenido %}<!-- Services-->
+{% block contenido %}
+    {% if formularioServicios.errors %}
+    <h2 style="color: red;">Error en el formulario</h2>
+    {% endif %}
+
+    <form action="/AppCoder/servicios" method="POST"> {% csrf_token %}
+        <h1 class="section-heading text-uppercase text-center">Formulario de registro de Servicios</h1>
+
+        <table style="margin-left: 500px;">
+            {{ formularioServicios.as_table }}
+
+        </table>
+
+        <input style="margin-left: 600px;" type="submit", value="Enviar">
+
+    </form>
+
+
+<!-- Services-->
 <section class="page-section" id="services">
     <div class="container">
         <div class="text-center">

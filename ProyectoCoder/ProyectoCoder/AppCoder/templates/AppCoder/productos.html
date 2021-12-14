@@ -6,6 +6,23 @@
 {% endblock %}
 
 {% block contenido %}
+
+        {% if formularioProductos.errors %}
+        <h2 style="color: red;">Error en el formulario</h2>
+        {% endif %}
+
+        
+        <form action="/AppCoder/productos" method="POST"> {% csrf_token %}
+            <h1 class="section-heading text-uppercase text-center">Formulario de registro de Productos</h1>
+
+            <table style="margin-left: 500px;">
+                {{ formularioProductos.as_table }}
+
+            </table>
+
+            <input style="margin-left: 567px;" type="submit", value="Enviar">
+
+        </form>  
 <!-- Portfolio Grid-->
 <section class="page-section bg-light" id="portfolio">
     <div class="container">

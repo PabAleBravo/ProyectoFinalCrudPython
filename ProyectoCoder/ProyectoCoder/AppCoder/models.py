@@ -34,7 +34,7 @@ class Productos(models.Model):
 
 class Servicios(models.Model):
     nombre =models.CharField(max_length=40)
-    tipoServicio=models.CharField(max_length=20)
+    tipoServicio=models.CharField(max_length=40)
     descripcion = models.CharField(max_length=500)
 
     def __str__(self):
