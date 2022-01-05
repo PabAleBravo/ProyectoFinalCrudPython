@@ -1,0 +1,72 @@
+{% extends "AppCoder/base.html" %}
+{% load static %}
+
+{% block contenido2 %}
+<div class="masthead-heading text-uppercase">Servicios <br> Almacenados en la Base</div>
+{% endblock %}
+
+{% block contenido %}
+
+        {% if formularioProductos.errors %}
+        <h2 style="color: red;">Error en el formulario</h2>
+        {% endif %}
+
+        
+        <form action="" method="POST"> {% csrf_token %}
+            <div style="background-color: rgb(241, 241, 241)">
+                <h3 class="section-heading text-uppercase text-center"> Leer Servicios en la almacenados en la DB</h3>
+            </div>
+        
+                {% for j in servicios %}
+                <li>{{j}}</li>
+                
+                <button class="btn btn-outline-dark">
+                    <a href="{% url 'EliminarServicio' j.nombre %}">Eliminar</a>
+                </button>    
+                <button class="btn btn-outline-dark">
+                    <a href="{% url 'EditarServicio' j.nombre %}">Editar</a>
+                </button>
+                <button class="btn btn-outline-dark">
+                    <a href="{% url 'DetalleServicio' j.id %}">Ver más</a>
+                </button>
+                {% endfor %}
+                <br>
+        </form>
+            
+        <!-- Portfolio Grid-->
+        <section class="page-section" id="services">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Servicios</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">Reparación</h4>
+                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">Instalación</h4>
+                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="my-3">Mantenimiento</h4>
+                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block contenido2 %}
-<div class="masthead-heading text-uppercase">Nuestros <br> Productos</div>
+<div class="masthead-heading text-uppercase">Editar <br> Productos</div>
 {% endblock %}
 
 {% block contenido %}
@@ -12,23 +12,20 @@
         {% endif %}
 
         
-        <form action="/AppCoder/productos" method="POST"> {% csrf_token %}
-             <a href="{% url 'LeerProductos' %}" class="btn btn-secondary btn-lg">
-                Visualizar productos almacenados en la base de datos
-            </a>
-            <h1 class="section-heading text-uppercase text-center">Formulario de registro de Productos</h1>
-         
+        <form action="" method="POST"> {% csrf_token %}
+            <div style="background-color: rgb(241, 241, 241)">
+                <h3 class="section-heading text-uppercase text-center">Formularios para editar Productos</h3>
+            </div>
+            
 
             <table style="margin-left: 500px;">
                 {{ formularioProductos.as_table }}
 
             </table>
 
-            <input style="margin-left: 567px;" type="submit", value="Enviar">
+            <input style="margin-left: 567px;" type="submit", value="Editar">
 
         </form>
-
-        
         <!-- Portfolio Grid-->
 <section class="page-section bg-light" id="portfolio">
     <div class="container">

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block contenido2 %}
-<div class="masthead-heading text-uppercase">Nuestros <br> Productos</div>
+<div class="masthead-heading text-uppercase">Clientes <br> Almacenados en la Base</div>
 {% endblock %}
 
 {% block contenido %}
@@ -13,22 +13,24 @@
 
         
         <form action="/AppCoder/productos" method="POST"> {% csrf_token %}
-             <a href="{% url 'LeerProductos' %}" class="btn btn-secondary btn-lg">
-                Visualizar productos almacenados en la base de datos
-            </a>
-            <h1 class="section-heading text-uppercase text-center">Formulario de registro de Productos</h1>
-         
+            <div style="background-color: rgb(241, 241, 241)">
+                <h3 class="section-heading text-uppercase text-center"> Leer Clientes en la almacenados en la DB</h3>
+            </div>
 
-            <table style="margin-left: 500px;">
-                {{ formularioProductos.as_table }}
-
-            </table>
-
-            <input style="margin-left: 567px;" type="submit", value="Enviar">
-
-        </form>
-
-        
+              <br>
+                {% for p in clientes %}
+                    <li>{{ p }}</li>
+                    
+                    <button class="btn btn-outline-dark">
+                        <a href="{% url 'EliminarCliente' p.nombre %}">Eliminar</a>
+                    </button>    
+                    <button class="btn btn-outline-dark">
+                        <a href="{% url 'EditarCliente' p.nombre %}">Editar</a>
+                    </button>
+                    
+                {% endfor %}
+                <br>
+        </form>        
         <!-- Portfolio Grid-->
 <section class="page-section bg-light" id="portfolio">
     <div class="container">
@@ -132,4 +134,3 @@
 </section>
 
 {% endblock %}
-

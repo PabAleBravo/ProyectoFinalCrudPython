@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block contenido2 %}
-<div class="masthead-heading text-uppercase">Nuestros <br> Productos</div>
+<div class="masthead-heading text-uppercase">Productos <br> Almacenados en la Base</div>
 {% endblock %}
 
 {% block contenido %}
@@ -12,23 +12,33 @@
         {% endif %}
 
         
-        <form action="/AppCoder/productos" method="POST"> {% csrf_token %}
-             <a href="{% url 'LeerProductos' %}" class="btn btn-secondary btn-lg">
-                Visualizar productos almacenados en la base de datos
-            </a>
-            <h1 class="section-heading text-uppercase text-center">Formulario de registro de Productos</h1>
-         
+        <form action="" method="POST"> {% csrf_token %}
+            <div style="background-color: rgb(241, 241, 241)">
+                <h3 class="section-heading text-uppercase text-center"> Leer Productos en la almacenados en la DB</h3>
+            </div>
+             
+                <a href="{% url 'Productos' %}" class="btn btn-dark float-left">
+                    Crear Registros
+                </a>
+          
 
-            <table style="margin-left: 500px;">
-                {{ formularioProductos.as_table }}
+              <br>
+                {% for j in productos %}
+                    <li>{{j}}</li>
 
-            </table>
+                    <button class="btn btn-outline-dark">
+                        <a href="{% url 'EliminarProducto' j.nombre %}">Eliminar</a>
+                    </button>    
+                    <button class="btn btn-outline-dark">
+                        <a href="{% url 'EditarProducto' j.nombre %}">Editar</a>
+                    </button>
+                    <button class="btn btn-outline-dark">
+                        <a href="{% url 'DetalleProducto' j.id %}">Ver más</a>
+                    </button>
 
-            <input style="margin-left: 567px;" type="submit", value="Enviar">
-
-        </form>
-
-        
+                {% endfor %}
+            
+        </form>    
         <!-- Portfolio Grid-->
 <section class="page-section bg-light" id="portfolio">
     <div class="container">
@@ -132,4 +142,3 @@
 </section>
 
 {% endblock %}
-

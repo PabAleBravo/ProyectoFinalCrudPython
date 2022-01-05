@@ -7,28 +7,20 @@
 
 {% block contenido %}
 
-        {% if formularioProductos.errors %}
-        <h2 style="color: red;">Error en el formulario</h2>
-        {% endif %}
-
         
-        <form action="/AppCoder/productos" method="POST"> {% csrf_token %}
-             <a href="{% url 'LeerProductos' %}" class="btn btn-secondary btn-lg">
-                Visualizar productos almacenados en la base de datos
-            </a>
-            <h1 class="section-heading text-uppercase text-center">Formulario de registro de Productos</h1>
-         
+            <div style="background-color: rgb(241, 241, 241)">
+                <h3 class="section-heading text-uppercase text-center"> Detalle de los productos</h3>
+            </div>
+            
 
-            <table style="margin-left: 500px;">
-                {{ formularioProductos.as_table }}
+            <p>Nombre del Producto: <i>{{productos.nombre}}</i> </p>
+            <p>Modelo del Producto: <i>{{productos.modelo}}</i> </p>
+            <p>Marca del Producto: <i>{{productos.marca}}</i> </p>
 
-            </table>
+            <button class="btn btn-outline-dark">
+                <a href="">Regresar</a>
+            </button>
 
-            <input style="margin-left: 567px;" type="submit", value="Enviar">
-
-        </form>
-
-        
         <!-- Portfolio Grid-->
 <section class="page-section bg-light" id="portfolio">
     <div class="container">

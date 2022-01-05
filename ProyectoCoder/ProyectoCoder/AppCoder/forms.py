@@ -1,6 +1,9 @@
 from django import forms
 from django.forms.forms import Form
 
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
 class ClientesFormulario(forms.Form):
     nombre =forms.CharField(max_length=40)
     direccion =forms.CharField(max_length=40)
