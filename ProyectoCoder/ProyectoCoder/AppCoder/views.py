@@ -231,7 +231,7 @@ class DetalleServicio(DetailView):
 
 # LOGIN
 
-def login(request):
+def login_request(request):
     
     if request.method =="POST":
         
@@ -245,12 +245,10 @@ def login(request):
             user = authenticate(username=usuario, password = contra)
             
             if user is not None:
-                
                 login(request, user)
                 return render(request, "AppCoder/inicio.html", {"mensaje":f"BIENVENIDO, {usuario}!!!!"})
                 
             else:
-                
                 return render(request, "AppCoder/inicio.html", {"mensaje":f"DATOS MALOS :(!!!!"})
                 
             

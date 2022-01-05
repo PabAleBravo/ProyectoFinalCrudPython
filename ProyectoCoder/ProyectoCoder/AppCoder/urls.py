@@ -29,9 +29,9 @@ urlpatterns = [
 
     #URL PARA CLASES BASADAS EN VITAS
     path(r'^(?P<pk>\d+)$',views.DetalleProducto.as_view(), name='DetalleProducto'),
-    path(r'detalle^(?P<pk>\d+)$',views.DetalleServicio.as_view(), name='DetalleServicio'),
+    path(r'^(?P<pk>\d+)$',views.DetalleServicio.as_view(), name='DetalleServicio'),
 
-    path('login', views.login, name= "Login"),
+    path('login', views.login_request, name= "Login"),
     
     
 ]
