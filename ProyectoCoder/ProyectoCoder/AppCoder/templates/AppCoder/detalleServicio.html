@@ -1,0 +1,20 @@
+{% extends "AppCoder/base.html" %}
+{% load static %}
+
+{% block contenido2 %}
+<div class="masthead-heading text-uppercase">Nuestros <br> Productos</div>
+{% endblock %}
+
+{% block contenido %}
+
+        <div class="p-3 mb-2 bg-light text-dark">  
+            <br>
+            <p> <b> Nombre del Servicio:</b> <i>{{servicios.nombre}}</i> </p>
+            <p> <b>Tipo de Servicio:</b> <i> {{servicios.tipoServicio}}</i> </p>
+            <p> <b>Descripión del Servicio:</b> <i>{{servicios.descripcion}}</i> </p>
+
+            <a href="{% url 'LeerServicios' %}" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Regresar</a>
+        </div>
+        
+{% endblock %}
+

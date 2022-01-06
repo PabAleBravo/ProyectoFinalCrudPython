@@ -10,7 +10,6 @@ urlpatterns = [
     path('servicios',views.servicios, name="Servicios"),
     path('productos',views.productos, name="Productos"),
     path('contacto',views.contacto, name="Contacto"),
-    path('login',views.login, name="Login"),
 
     path('leerProductos',views.leerProductos, name="LeerProductos"),
     path('leerServicios',views.leerServicios, name="LeerServicios"),
@@ -29,9 +28,11 @@ urlpatterns = [
 
     #URL PARA CLASES BASADAS EN VITAS
     path(r'^(?P<pk>\d+)$',views.DetalleProducto.as_view(), name='DetalleProducto'),
-    path(r'^(?P<pk>\d+)$',views.DetalleServicio.as_view(), name='DetalleServicio'),
+    path(r'detalleServicio(?P<pk>\d+)$',views.DetalleServicio.as_view(), name='DetalleServicio'),
+    path(r'detalleProveedor(?P<pk>\d+)$',views.DetalleProveedor.as_view(), name='DetalleProveedor'),
+    path(r'detalleCliente(?P<pk>\d+)$',views.DetalleCliente.as_view(), name='DetalleCliente'),
 
-    path('login', views.login_request, name= "Login"),
+    path('login', views.login_request, name="Login"),
     
     
 ]

@@ -6,15 +6,17 @@
 {% endblock %}
 
 {% block contenido %}
+    
+    <div class="p-3 mb-2 bg-light text-dark">
+        <br>
+        <form action="" method="POST">
 
-    <form action="" method="POST">
+            {% csrf_token %}
 
-        {% csrf_token %}
+                {{form.as_p}}
 
-        {{form.as_p}}
+            <input type="submit" value="LOGIN">
 
-        <input type="submit" value="LOGIN">
-
-    </form>
-
+        </form>
+    </div>
 {% endblock %}

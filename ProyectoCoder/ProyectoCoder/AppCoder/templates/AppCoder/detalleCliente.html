@@ -1,0 +1,23 @@
+{% extends "AppCoder/base.html" %}
+{% load static %}
+
+{% block contenido2 %}
+<div class="masthead-heading text-uppercase">Detalle del<br> Cliente</div>
+{% endblock %}
+
+{% block contenido %}         
+            
+    <div class="p-3 mb-2 bg-light text-dark">
+            <br>
+            <p> <b> Nombre del Cliente:</b> <i>{{clientes.nombre}}</i> </p>
+            <p> <b>Dirección:</b> <i> {{clientes.direccion}}</i> </p>
+            <p> <b>Teléfono:</b> <i>{{clientes.telefono}}</i> </p>
+            <p> <b>Ciudad:</b> <i>{{clientes.ciudad}}</i> </p>
+            <p> <b>Vendedor:</b> <i>{{clientes.vendedor}}</i> </p>
+            <p> <b>Fecha de Alta:</b> <i>{{clientes.fechaAlta}}</i> </p>
+
+            <a href="{% url 'LeerClientes' %}" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Regresar</a>
+    </div>
+       
+{% endblock %}
+

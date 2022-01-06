@@ -1,0 +1,20 @@
+{% extends "AppCoder/base.html" %}
+{% load static %}
+
+{% block contenido2 %}
+<div class="masthead-heading text-uppercase"> Detalle<br> Proveedor</div>
+{% endblock %}
+
+{% block contenido %}
+        <div class="p-3 mb-2 bg-light text-dark"> 
+            <br>
+            <p> <b> Nombre del Proveedor:</b> <i>{{servicios.nombre}}</i> </p>
+            <p> <b>Dirección :</b> <i> {{proveedores.direccion}}</i> </p>
+            <p> <b> Teléfono:</b> <i>{{proveedores.telefono}}</i> </p>
+            <p> <b> Ciudad:</b> <i>{{proveedores.ciudad}}</i> </p>
+            <p> <b> Fecha de Alta:</b> <i>{{proveedores.fechaAlta}}</i> </p>
+
+            <a href="{% url 'LeerProveedores' %}" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Regresar</a>
+        </div>
+{% endblock %}
+

@@ -17,9 +17,12 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+from django.contrib.auth.models import User
+
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login,authenticate  
 from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -227,38 +230,36 @@ class DetalleProducto(DetailView):
 
 class DetalleServicio(DetailView):
     model = Servicios
-    template_name ="AppCoder/detalleServicios.html"
+    template_name ="AppCoder/detalleServicio.html"
+
+class DetalleProveedor(DetailView):
+    model = Proveedores
+    template_name ="AppCoder/detalleProveedor.html"
+
+class DetalleCliente(DetailView):
+    model = Clientes
+    template_name ="AppCoder/detalleCliente.html"
 
 # LOGIN
 
 def login_request(request):
-    
+
     if request.method =="POST":
-        
         form = AuthenticationForm(request, data = request.POST)
-        
+
         if form.is_valid():
-            
-            usuario = form.cleaned_data.get("username")
-            contra = form.cleaned_data.get("password")
-            
+            usuario = form.cleaned_data.get('username')
+            contra = form.cleaned_data.get('password')
+
             user = authenticate(username=usuario, password = contra)
-            
+
             if user is not None:
                 login(request, user)
                 return render(request, "AppCoder/inicio.html", {"mensaje":f"BIENVENIDO, {usuario}!!!!"})
-                
             else:
                 return render(request, "AppCoder/inicio.html", {"mensaje":f"DATOS MALOS :(!!!!"})
-                
-            
         else:
-            
             return render(request, "AppCoder/inicio.html", {"mensaje":f"FORMULARIO erroneo"})
             
-            
-    
-    
     form = AuthenticationForm()  #Formulario sin nada para hacer el login
-    
-    return render(request, "AppCoder/login.html", {"form":form} )  
+    return render(request, "AppCoder/login.html", {'form':form} ) 

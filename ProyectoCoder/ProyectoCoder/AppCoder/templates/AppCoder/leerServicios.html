@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block contenido2 %}
-<div class="masthead-heading text-uppercase">Servicios <br> Almacenados en la Base</div>
+<div class="masthead-heading text-uppercase"> Nuestros <br> Servicios</div>
 {% endblock %}
 
 {% block contenido %}
@@ -11,62 +11,35 @@
         <h2 style="color: red;">Error en el formulario</h2>
         {% endif %}
 
-        
+    <div class="p-3 mb-2 bg-light text-dark">
         <form action="" method="POST"> {% csrf_token %}
-            <div style="background-color: rgb(241, 241, 241)">
-                <h3 class="section-heading text-uppercase text-center"> Leer Servicios en la almacenados en la DB</h3>
-            </div>
-        
-                {% for j in servicios %}
-                <li>{{j}}</li>
-                
-                <button class="btn btn-outline-dark">
-                    <a href="{% url 'EliminarServicio' j.nombre %}">Eliminar</a>
-                </button>    
-                <button class="btn btn-outline-dark">
-                    <a href="{% url 'EditarServicio' j.nombre %}">Editar</a>
-                </button>
-                <button class="btn btn-outline-dark">
-                    <a href="{% url 'DetalleServicio' j.id %}">Ver más</a>
-                </button>
-                {% endfor %}
                 <br>
+                <a href="{% url 'Servicios' %}" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Crear nuevo servicio</a>
+                
+                <table class="table table-bordered table-info mt-5 text-center">
+                    <thead>
+                        <tr>
+                          <th>Nombre</th>
+                          <th>Tipo de Servicio</th>
+                          <th>Descripción</th>
+                          <th colspan="3">Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>    
+                        {% for j in servicios %}
+                          <tr>
+                              <th>{{j.nombre}}</th>
+                              <td>{{j.tipoServicio}}</th>
+                              <td>{{j.descripcion}}</td>
+                                  <td>
+                                      <a href="{% url 'EliminarServicio' j.nombre %}" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Eliminar</a>
+                                      <a href="{% url 'EditarServicio' j.nombre %}" class="btn btn-warning btn-sm active" role="button" aria-pressed="true">Editar</a>
+                                      <a href="{% url 'DetalleServicio' j.id %}" class="btn btn-success btn-sm active" role="button" aria-pressed="true">Ver mas</a>
+                                  </td>
+                          </tr>
+                          {% endfor %} 
+                      </tbody>
+                      </table>
         </form>
-            
-        <!-- Portfolio Grid-->
-        <section class="page-section" id="services">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Servicios</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                </div>
-                <div class="row text-center">
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="my-3">Reparación</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="my-3">Instalación</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="my-3">Mantenimiento</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+    </div>
 {% endblock %}
