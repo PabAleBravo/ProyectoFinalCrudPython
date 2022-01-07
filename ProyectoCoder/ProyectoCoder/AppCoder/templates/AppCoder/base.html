@@ -34,8 +34,19 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'LeerServicios' %}">Servicios</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'LeerProveedores' %}">Proveedores</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'LeerClientes' %}">Clientes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Contacto' %}">Contacto</a></li>
+        
+                        
+                    
+                        {% if not request.user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}">Login</a></li>
+                        {% endif %}
+
+                        {% if  request.user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link text-danger" href="{% url 'Logout' %}">Cerrar Sesión</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'EditarPerfil' %}">Modificar Perfil</a></li>
+                        {% endif %}
+
+
                     </ul>
                 </div>
             </div>

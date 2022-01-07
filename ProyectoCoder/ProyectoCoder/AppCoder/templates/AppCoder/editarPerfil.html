@@ -8,21 +8,26 @@
 {% block contenido %}
     
     <div class="p-3 mb-2 bg-light text-dark">
-        
-        <a href="{% url 'Register' %}" class="btn btn-dark btn-sm active" role="button" aria-pressed="true">Alta de Usuarios</a>
-        
-        <hr>
+        <br>
         <br>
         <form action="" method="POST">
 
             {% csrf_token %}
 
-                {{form.as_p}}
-
+            <table>
+                {{ miFormulario.as_table }}
+            </Table>
             
-            <input class="btn btn-dark btn-sm active" type="submit" value="Login">
+            <input class="btn btn-dark btn-sm active" type="submit" value="Enviar">
             
         </form>
         
     </div>
 {% endblock %}
+
+<table style="margin-left: 500px;">
+    {{ formularioProductos.as_table }}
+
+</table>
+
+<input style="margin-left: 567px;" type="submit", value="Enviar">

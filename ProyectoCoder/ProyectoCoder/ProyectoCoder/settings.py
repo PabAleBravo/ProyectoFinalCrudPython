@@ -124,3 +124,5 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = '/AppCoder/login' # Esto permite redireccionar al login cuando el usuario no esta habilitado para ingresar a cierta clase

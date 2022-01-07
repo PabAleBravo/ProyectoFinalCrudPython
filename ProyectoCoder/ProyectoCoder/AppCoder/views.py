@@ -4,14 +4,9 @@ from django.http import HttpResponse
 from django.views.generic import detail
 from django.views.generic.base import TemplateResponseMixin
 
-from AppCoder.models import Clientes
-from AppCoder.models import Proveedores
-from AppCoder.models import Productos
-from AppCoder.models import Servicios
-from AppCoder.forms import ClientesFormulario
-from AppCoder.forms import ProveedoresFormulario
-from AppCoder.forms import ProductosFormulario
-from AppCoder.forms import ServiciosFormulario
+from AppCoder.models import Clientes, Proveedores, Productos, Servicios
+from AppCoder.forms import ClientesFormulario, ProveedoresFormulario, ProductosFormulario, ServiciosFormulario, UserRegisterForm, UserEditForm
+
 
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -19,8 +14,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.contrib.auth.models import User
 
+
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login,authenticate  
+from django.contrib.auth import login as dj_login, authenticate  
 from django.contrib.auth.decorators import login_required
 
 
@@ -33,6 +29,7 @@ def inicio(request):
     return render(request, 'AppCoder/inicio.html')
 
 # CREAR REGISTROS
+@login_required
 def proveedores(request):
     formularioProveedores = ClientesFormulario(request.POST)
     if request.method == "POST":
@@ -45,7 +42,7 @@ def proveedores(request):
         formularioProveedores=ProveedoresFormulario()
     return render(request, 'AppCoder/proveedores.html',{"formularioProveedores":formularioProveedores})
     
-
+@login_required
 def clientes(request):
     formularioClientes = ClientesFormulario(request.POST)
     if request.method == "POST":
@@ -58,7 +55,7 @@ def clientes(request):
         formularioClientes=ClientesFormulario()
     return render(request, 'AppCoder/clientes.html',{"formularioClientes":formularioClientes})
 
-
+@login_required
 def servicios(request):
     formularioServicios = ServiciosFormulario(request.POST)
     if request.method == "POST":
@@ -71,7 +68,7 @@ def servicios(request):
         formularioServicios=ServiciosFormulario()
     return render(request, 'AppCoder/servicios.html',{"formularioServicios":formularioServicios})
 
-
+@login_required
 def productos(request):
     formularioProductos = ProductosFormulario(request.POST)
     if request.method == "POST":
@@ -94,6 +91,7 @@ def login(request):
 
 
 # LEER REGISTROS------------------------------------------------------------------------------------ 
+
 def leerProductos(request):
     productos = Productos.objects.all()
     prod ={"productos":productos} # contexto
@@ -104,17 +102,20 @@ def leerServicios(request):
     serv ={"servicios":servicios} # contexto
     return render(request, 'AppCoder/leerServicios.html',serv)
 
+@login_required
 def leerProveedores(request):
     proveedores = Proveedores.objects.all()
     prov ={"proveedores":proveedores} # contexto
     return render(request, 'AppCoder/leerProveedores.html',prov)
 
+@login_required
 def leerClientes(request):
     clientes = Clientes.objects.all()
     clie ={"clientes":clientes} # contexto
     return render(request, 'AppCoder/leerClientes.html',clie)
 
 # ELIMINAR REGISTROS------------------------------------------------------------------------------------     
+@login_required
 def eliminarCliente(request,nombre_para_borrar):
     clienteParaBorrar = Clientes.objects.get(nombre=nombre_para_borrar)
     clienteParaBorrar.delete()
@@ -122,6 +123,7 @@ def eliminarCliente(request,nombre_para_borrar):
     clientes = Clientes.objects.all()
     return render(request,'AppCoder/leerClientes.html',{"clientes":clientes}) 
 
+@login_required
 def eliminarProducto(request,nombre_para_borrar):
     productoParaBorrar = Productos.objects.get(nombre=nombre_para_borrar)
     productoParaBorrar.delete()
@@ -129,6 +131,7 @@ def eliminarProducto(request,nombre_para_borrar):
     productos = Productos.objects.all()
     return render(request,'AppCoder/leerProductos.html',{"productos":productos})
 
+@login_required
 def eliminarServicio(request,nombre_para_borrar):
     servicioParaBorrar = Servicios.objects.get(nombre=nombre_para_borrar)
     servicioParaBorrar.delete()
@@ -136,6 +139,7 @@ def eliminarServicio(request,nombre_para_borrar):
     servicios = Servicios.objects.all()
     return render(request,'AppCoder/leerServicios.html',{"servicios":servicios})
 
+@login_required
 def eliminarProveedor(request,nombre_para_borrar):
     proveedorParaBorrar = Proveedores.objects.get(nombre=nombre_para_borrar)
     proveedorParaBorrar.delete()
@@ -144,6 +148,8 @@ def eliminarProveedor(request,nombre_para_borrar):
     return render(request,'AppCoder/leerProveedores.html',{"proveedores":proveedores})
 
 # MOFIFICAR REGISTROS------------------------------------------------------------------------------------  
+
+@login_required
 def editarProducto(request, nombre_para_editar):
     producto = Productos.objects.get(nombre=nombre_para_editar)
     if request.method == "POST":
@@ -161,6 +167,7 @@ def editarProducto(request, nombre_para_editar):
         formularioProductos=ProductosFormulario(initial={"nombre":producto.nombre,"modelo":producto.modelo,"marca":producto.marca})
     return render(request, 'AppCoder/editarProducto.html',{"formularioProductos":formularioProductos,"nombre_para_editar":nombre_para_editar})  
 
+@login_required
 def editarCliente(request, nombre_para_editar):
     cliente = Clientes.objects.get(nombre=nombre_para_editar)
     if request.method == "POST":
@@ -181,7 +188,7 @@ def editarCliente(request, nombre_para_editar):
         formularioClientes=ClientesFormulario(initial={"nombre":cliente.nombre,"direccion":cliente.direccion,"telefono":cliente.telefono,"ciudad":cliente.ciudad,"vendedor":cliente.vendedor,"fechaAlta":cliente.fechaAlta})
     return render(request, 'AppCoder/editarCliente.html',{"formularioClientes":formularioClientes,"nombre_para_editar":nombre_para_editar})
 
-
+@login_required
 def editarProveedor(request, nombre_para_editar):
     proveedor = Proveedores.objects.get(nombre=nombre_para_editar)
     if request.method == "POST":
@@ -201,7 +208,7 @@ def editarProveedor(request, nombre_para_editar):
         formularioProveedores=ProveedoresFormulario(initial={"nombre":proveedor.nombre,"direccion":proveedor.direccion,"telefono":proveedor.telefono,"ciudad":proveedor.ciudad,"fechaAlta":proveedor.fechaAlta})
     return render(request, 'AppCoder/editarProveedor.html',{"formularioProveedores":formularioProveedores,"nombre_para_editar":nombre_para_editar})
 
-
+@login_required
 def editarServicio(request, nombre_para_editar):
     servicio = Servicios.objects.get(nombre=nombre_para_editar)
     if request.method == "POST":
@@ -243,23 +250,91 @@ class DetalleCliente(DetailView):
 # LOGIN
 
 def login_request(request):
-
+    
     if request.method =="POST":
+        
         form = AuthenticationForm(request, data = request.POST)
-
+        
         if form.is_valid():
-            usuario = form.cleaned_data.get('username')
-            contra = form.cleaned_data.get('password')
-
+            
+            usuario = form.cleaned_data.get("username")
+            contra = form.cleaned_data.get("password")
+            
             user = authenticate(username=usuario, password = contra)
-
+            
             if user is not None:
-                login(request, user)
-                return render(request, "AppCoder/inicio.html", {"mensaje":f"BIENVENIDO, {usuario}!!!!"})
+                
+                dj_login(request, user)
+                
+                return render(request, "AppCoder/inicio.html", {"mensaje":f"¡BIENVENIDO, Hola {usuario}! Ahora podes ver todas las funcionalidades."})
+                
             else:
-                return render(request, "AppCoder/inicio.html", {"mensaje":f"DATOS MALOS :(!!!!"})
+                
+                return render(request, "AppCoder/inicio.html", {"mensaje":f"DATOS incorrectos :(!!!!"})
+                
+            
         else:
+            
             return render(request, "AppCoder/inicio.html", {"mensaje":f"FORMULARIO erroneo"})
             
+            
+    
+    
     form = AuthenticationForm()  #Formulario sin nada para hacer el login
-    return render(request, "AppCoder/login.html", {'form':form} ) 
+    
+    return render(request, "AppCoder/login.html", {"form":form} )
+
+
+    # REGISTRO DE USUARIO
+
+def register(request):
+    
+    if request.method == 'POST':
+        
+        form = UserRegisterForm(request.POST)
+            
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            form.save()
+            return render(request,"AppCoder/inicio.html" ,  {"mensaje":f" Usuario {username} Creado"})
+
+
+    else:
+       
+              
+        form = UserRegisterForm()     
+
+    return render(request,"AppCoder/register.html" ,  {"form":form})
+
+
+# EDITAR USUARIO
+
+@login_required
+def editarPerfil(request):
+    
+    usuario = request.user
+    
+    if request.method == 'POST':
+        
+        miFormulario = UserEditForm(request.POST)
+        
+        if miFormulario.is_valid():
+            
+            informacion = miFormulario.cleaned_data
+            
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+            usuario.save()
+            
+            return render(request, "AppCoder/inicio.html",{f"mensaje":f"Se guardó con Exito"})
+        
+    else:
+        
+        miFormulario = UserEditForm(initial={'email':usuario.email})
+        
+        
+    return render(request, "AppCoder/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
+
+
+    

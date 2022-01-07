@@ -1,0 +1,24 @@
+{% extends "AppCoder/base.html" %}
+{% load static %}
+
+{% block contenido2 %}
+<div class="masthead-heading text-uppercase">Registro <br> de Usuarios</div>
+{% endblock %}
+
+{% block contenido %}
+
+<div class="p-3 mb-2 bg-light text-dark">
+    <br>
+    <form action="" method="POST">
+
+        {% csrf_token %}
+
+            {{form.as_p}}
+
+        <input class="btn btn-dark btn-sm active" type="submit" value="Registrarse">
+
+    </form>
+</div>
+
+
+{% endblock %}  

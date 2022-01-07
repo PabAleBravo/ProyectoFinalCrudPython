@@ -10,6 +10,11 @@ urlpatterns = [
     path('servicios',views.servicios, name="Servicios"),
     path('productos',views.productos, name="Productos"),
     path('contacto',views.contacto, name="Contacto"),
+    path('login', views.login_request, name="Login"),
+    path('register', views.register, name="Register"),
+    path('logout', LogoutView.as_view(template_name='AppCoder/logout.html'), name="Logout"),
+    path('editarPerfil', views.editarPerfil, name="EditarPerfil"),
+
 
     path('leerProductos',views.leerProductos, name="LeerProductos"),
     path('leerServicios',views.leerServicios, name="LeerServicios"),
@@ -32,7 +37,8 @@ urlpatterns = [
     path(r'detalleProveedor(?P<pk>\d+)$',views.DetalleProveedor.as_view(), name='DetalleProveedor'),
     path(r'detalleCliente(?P<pk>\d+)$',views.DetalleCliente.as_view(), name='DetalleCliente'),
 
-    path('login', views.login_request, name="Login"),
+    
+
     
     
 ]
