@@ -37,7 +37,10 @@ urlpatterns = [
     path(r'detalleProveedor(?P<pk>\d+)$',views.DetalleProveedor.as_view(), name='DetalleProveedor'),
     path(r'detalleCliente(?P<pk>\d+)$',views.DetalleCliente.as_view(), name='DetalleCliente'),
 
-    
+    #BUSCAR
+    path('buscarproducto/',views.buscarproducto, name="buscarproducto"),
+    path('resutadobuscarproducto', views.resultadobuscarproducto, name="resutadobuscarproducto"),
+
 
     
     

@@ -7,6 +7,17 @@
 
 {% block contenido %}
 
+<!-- Buscar-->
+
+<h6>Buscar producto por Marca</h6>
+<form action = "AppCoder/buscarproducto" method="GET">
+    <input type="text" name="marca" id="marca">
+    <input type="submit" class="btn btn-dark btn-sm active" value="Buscar">
+</form>
+
+<!---->
+
+
         {% if formularioProductos.errors %}
         <h2 style="color: red;">Error en el formulario</h2>
         {% endif %}

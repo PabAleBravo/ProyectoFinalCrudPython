@@ -336,5 +336,16 @@ def editarPerfil(request):
         
     return render(request, "AppCoder/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
 
+#BUSCAR
 
+def buscarproducto(request):
+    if request.GET["marca"]:
+        marca = request.GET["marca"]
+        nombre = Productos.objects.filter(marca__icontains=marca)
+
+        return render(request, "AppCoder/resutadobuscarproducto.html", {"marca":marca, "nombre":nombre})
     
+    else:
+        respuesta = "No se encontro información"
+
+    return HttpResponse(respuesta)
