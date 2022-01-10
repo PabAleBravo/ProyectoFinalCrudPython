@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block contenido2 %}
-<div class="masthead-heading text-uppercase"> Nuestros <br> Productos</div>
+<div class="masthead-heading text-uppercase"> Nuestros <br> Servicios</div>
 {% endblock %}
 
 {% block contenido %}
@@ -16,16 +16,16 @@
                 <thead>
                     <tr>
                       <th>Nombre</th>
-                      <th>Modelo</th>
-                      <th>Marca</th>
+                      <th>Tipo de Servicio</th>
+                      <th>Descripción</th>
                     </tr>
                   </thead>
                   <tbody>  
-                    {% for Productos in nombre %}
+                    {% for Servicios in nombre %}
                         <tr>
-                            <th>{{Productos.nombre}}</th>
-                            <td>{{Productos.modelo}}</th>
-                            <td>{{Productos.marca}}</td>
+                            <th>{{Servicios.nombre}}</th>
+                            <td>{{Servicios.tipoServicio}}</th>
+                            <td>{{Servicios.descripcion}}</td>
                         <tr>
 
                         {% endfor %}

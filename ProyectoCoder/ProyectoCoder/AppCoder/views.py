@@ -336,7 +336,7 @@ def editarPerfil(request):
         
     return render(request, "AppCoder/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
 
-#BUSCAR
+#BUSCAR----------------------------------------------------------------------------------------------------
 
 def buscarproducto(request):
     if request.GET["marca"]:
@@ -344,6 +344,42 @@ def buscarproducto(request):
         nombre = Productos.objects.filter(marca__icontains=marca)
 
         return render(request, "AppCoder/resutadobuscarproducto.html", {"marca":marca, "nombre":nombre})
+    
+    else:
+        respuesta = "No se encontro información"
+
+    return HttpResponse(respuesta)
+
+def buscarservicio(request):
+    if request.GET["tipoServicio"]:
+        tipoServicio = request.GET["tipoServicio"]
+        nombre = Servicios.objects.filter(tipoServicio__icontains=tipoServicio)
+
+        return render(request, "AppCoder/resutadobuscarservicio.html", {"tipoServicio":tipoServicio, "nombre":nombre})
+    
+    else:
+        respuesta = "No se encontro información"
+
+    return HttpResponse(respuesta)
+
+def buscarproveedor(request):
+    if request.GET["ciudad"]:
+        ciudad = request.GET["ciudad"]
+        nombre = Proveedores.objects.filter(ciudad__icontains=ciudad)
+
+        return render(request, "AppCoder/resutadobuscarproveedor.html", {"ciudad":ciudad, "nombre":nombre})
+    
+    else:
+        respuesta = "No se encontro información"
+
+    return HttpResponse(respuesta)
+
+def buscarcliente(request):
+    if request.GET["ciudad"]:
+        ciudad = request.GET["ciudad"]
+        nombre = Clientes.objects.filter(ciudad__icontains=ciudad)
+
+        return render(request, "AppCoder/resutadobuscarcliente.html", {"ciudad":ciudad, "nombre":nombre})
     
     else:
         respuesta = "No se encontro información"

@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block contenido2 %}
-<div class="masthead-heading text-uppercase"> Nuestros <br> Productos</div>
+<div class="masthead-heading text-uppercase"> Nuestros <br> Proveedores</div>
 {% endblock %}
 
 {% block contenido %}
 
-    <h6>Los productos con la misma marca son:</h6>
+    <h6>Los proveedores con la misma ciudad son:</h6>
 
     {% if nombre %}
 
@@ -16,16 +16,20 @@
                 <thead>
                     <tr>
                       <th>Nombre</th>
-                      <th>Modelo</th>
-                      <th>Marca</th>
+                      <th>Dirección</th>
+                      <th>Teléfono</th>
+                      <th>Ciudad</th>
+                      <th>Fecha de Alta</th>
                     </tr>
                   </thead>
                   <tbody>  
-                    {% for Productos in nombre %}
+                    {% for Proveedores in nombre %}
                         <tr>
-                            <th>{{Productos.nombre}}</th>
-                            <td>{{Productos.modelo}}</th>
-                            <td>{{Productos.marca}}</td>
+                            <th>{{Proveedores.nombre}}</th>
+                            <td>{{Proveedores.direccion}}</th>
+                            <td>{{Proveedores.telefono}}</td>
+                            <td>{{Proveedores.ciudad}}</th>
+                            <td>{{Proveedores.fechaAlta}}</td>
                         <tr>
 
                         {% endfor %}
