@@ -39,9 +39,11 @@ urlpatterns = [
 
     #BUSCAR
     path('buscarproducto/',views.buscarproducto, name="buscarproducto"),
-    path('resutadobuscarproducto', views.resultadobuscarproducto, name="resutadobuscarproducto"),
+    path('buscarservicio/',views.buscarservicio, name="buscarservicio"),
+    path('buscarproveedor/',views.buscarproveedor, name="buscarproveedor"),
+    path('buscarcliente/',views.buscarcliente, name="buscarcliente"),
 
 
-    
+
     
 ]
