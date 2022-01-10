@@ -1,3 +1,5 @@
-# Entrega1Toledo-ProyectoFinalCrudPython
-Esta primera entrega de proyecto final contiene cuatro clases las cuales cada una tiene un formulario para insertar datos en la DB.
-En dicho proyecto (página Web) contiene un menú con (Productos, Servicios, Proveedores Clientes) donde cada uno de estos tiene un formulario que permite almacenar datos en la base.
+# EntregaFinal-ProyectoFinalCrudPython
+Nombres de los Integrantes:
+-Miguel Toledo: Se ocupó de la realización de los metodos de Lectura, Carga en las diferentes secciones.
+-Milton Clavijo: Realizó el login, logout, registro, mejoras en el html
+-Pablo Bravo: Realizó las busquedas, vídeo explicativo, readme, pruebas
