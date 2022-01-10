@@ -16,7 +16,7 @@ from django.contrib.auth.models import User
 
 
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login as dj_login, authenticate  
+from django.contrib.auth import login as dj_login, authenticate, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 
 
@@ -321,12 +321,12 @@ def editarPerfil(request):
         if miFormulario.is_valid():
             
             informacion = miFormulario.cleaned_data
-            
-            usuario.email = informacion['email']
-            usuario.password1 = informacion['password1']
-            usuario.password2 = informacion['password2']
+
+            usuario.set_password(informacion.get('password1'))
             usuario.save()
-            
+            update_session_auth_hash(request, usuario)
+
+
             return render(request, "AppCoder/inicio.html",{f"mensaje":f"Se guardó con Exito"})
         
     else:
